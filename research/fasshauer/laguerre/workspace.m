@@ -17,6 +17,16 @@ for a=avec
     ac = ac + 1;
 end
 
+% Another look at the impact of alpha
+avec = linspace(-1,1,5)
+figure
+for a=avec
+    hold on
+    plot(x, LaguerrePoly(3, x, a), 'linewidth', 3);
+    ylim([-40, 20])
+    hold off
+end
+
 % This should check for normality of the weight function
 a = .78;
 d = .17;
@@ -48,6 +58,7 @@ x = linspace(0, 100, 200);
 a = .1;
 figure
 dvec = [.1, .15, .2, .24];
+%dvec = [.1, .2, .3, .4];
 dc = 1;
 for d=dvec
     subplot(2, 2, dc)
@@ -104,7 +115,7 @@ rbf = @(x, z, e) exp(-(e * DistanceMatrix(x, z)).^2);
 
 % Just randomly creating points now -- likely to be structured in time
 N = 30;
-yf = @(x, t) cos(5 * x) .* exp(-t / 3);
+yf = @(x, t) cos(5 * t) .* exp(-x / 3);
 xx = rand(N, 1);
 xt = 5 * rand(N, 1);
 y = yf(xx, xt);
